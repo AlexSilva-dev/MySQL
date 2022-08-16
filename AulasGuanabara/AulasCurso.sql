@@ -148,5 +148,73 @@ where idcurso = '9';
 
 delete from cursos
 where idcurso = '10';
--- 		AULA 08 BANCO DE DADOS
+-- 		AULA 11 BANCO DE DADOS
+
+use cadastro;
+select * from cursos;
+select * from gafanhotos;
+
+-- ordena por campos
+select * from gafanhotos
+order by nome; 
+
+-- ordenar por campo mais decrecente 
+select * from gafanhotos
+order by nome desc;
+
+-- filtrar colunas para não exibir todas e não ter infomações desnecessárias na tela 
+select nome, profissao from gafanhotos
+order by nome;
+
+-- filtrar linhas
+select nome, profissao from gafanhotos
+where profissao = "programador"
+order by nome;
+
+-- filtrando por linhas e colocando um segundo parametro de ordem de dados
+select nome, profissao, sexo from gafanhotos
+where profissao = "programador"
+order by sexo, nome; -- ordena por sexo e logo depois ordena por nome
+
+select nome, profissao, altura from gafanhotos
+where altura < '1.6' -- posso usar os operadores = < > != between and in
+order by altura, nome;
+
+select nome, altura from gafanhotos
+where altura between '1.6' and '1.7' -- obs: a ordem que ponho os argumentos importa 
+order by altura;
+
+select nome, altura from gafanhotos
+where altura in ('1.55', '1.65') -- eu escolho faixas especificas de valores
+order by altura;
+
+-- filtrando linhas com operadores logicos
+
+select nome, altura from gafanhotos
+where altura between '1.7' and '1.8' and sexo = 'F' 
+order by altura;
+
+select nome, altura from gafanhotos
+where altura between '1.7' and '1.8' and sexo = 'M' 
+order by altura;
+
+--		AULA 12 DE BANCO DE DADOS 
+
+-- operador LIKE ele pega elelementos parecidos com o argumento dado
+use cadastro;
+
+select nome, altura from gafanhotos
+where altura like '2.%'; --  % é um caracter coringa no qual pode ser substituido por qualquer coisa inclusive nada
+
+select nome, profissao from gafanhotos
+where nome like 'A%'; -- começa com A 	*OBS; não importa se é maiúsculo ou minúsculo 
+
+select nome, profissao from gafanhotos
+where nome like '%á'; -- termina com a		*OBS; não importa os acéntos 
+
+select nome, profissao from gafanhotos
+where nome like '%b%'; -- pega os nomes que tem A em qualquer lugar, seja no começo, final ou meio.
+
+select nome, profissao from gafanhotos
+where nome like '_b%'; -- _ obriga a ter um caracter no seu lugar ou seja, não pode ser vazio
 
