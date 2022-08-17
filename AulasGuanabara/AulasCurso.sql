@@ -287,4 +287,8 @@ group by altura
 having count(*) > 3
 order by count(*) desc;
 
+select altura, count(altura) from gafanhotos
+group by altura
+order by count(altura)
+having altura  (select avg(altura) from gafanhotos);
 
