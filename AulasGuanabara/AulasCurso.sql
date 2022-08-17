@@ -148,6 +148,9 @@ where idcurso = '9';
 
 delete from cursos
 where idcurso = '10';
+
+
+
 -- 		AULA 11 BANCO DE DADOS
 
 use cadastro;
@@ -216,5 +219,72 @@ select nome, profissao from gafanhotos
 where nome like '%b%'; -- pega os nomes que tem A em qualquer lugar, seja no começo, final ou meio.
 
 select nome, profissao from gafanhotos
-where nome like '_b%'; -- _ obriga a ter um caracter no seu lugar ou seja, não pode ser vazio
+where nome like '_a%'; -- _ obriga a ter um caracter no seu lugar ou seja, não pode ser vazio
+
+select nome, profissao from gafanhotos
+where nome like '__a%'; 
+
+select nome from gafanhotos
+where nome like '%silva%';
+
+-- exibe todas as diferenças de determinado campo ou seja, sem repetição
+select distinct profissao from gafanhotos
+order by profissao;
+
+
+-- count() - conta a quantidade registro
+select count(*) from gafanhotos;
+
+select count(*) from gafanhotos
+where altura > '1.6'; 
+
+select count(*) from gafanhotos
+where nome like 'a%'; -- conta quantas pessoas que tem o nome começando em A
+
+-- max() - mostra o maior elemento do campo && min() mostra o menor 
+select max(altura) from gafanhotos;
+select min(altura) from gafanhotos;
+
+
+-- sum() - soma um campo/coluna
+select * from cursos;
+
+select sum(totaulas) from cursos;
+
+select sum(totaulas) from cursos
+where ano between '2015' and '2017';
+
+
+-- avg() - calcula a média de um campo/coluna
+select avg(totaulas) from cursos;
+
+select avg(altura) from gafanhotos;
+
+--		AULA 13 BANCO DE DADOS________
+
+-- agrupamentos - agrupa os campos repetidos, mas sem contar não da para ver diferença entre distinct
+select carga from cursos
+group by carga
+order by carga;
+
+select carga, count(*) from cursos
+group by carga
+order by carga;
+
+select altura, count(altura) from gafanhotos
+where altura > '1.5'
+group by altura
+order by altura;
+
+select altura, count(altura) from gafanhotos
+where altura > '1.5'
+group by altura
+order by count(altura) desc; -- ordenando por quantidade de elementos no agrupamento
+
+-- having 
+select altura, count(altura) from gafanhotos
+group by altura
+having count(*) > 3
+order by count(*) desc;
+
 
